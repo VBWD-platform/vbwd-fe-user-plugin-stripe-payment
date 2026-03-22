@@ -19,19 +19,19 @@ export const stripePaymentPlugin: IPlugin = {
       path: '/pay/stripe',
       name: 'stripe-payment',
       component: () => import('./StripePaymentView.vue'),
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true, noLayout: true }
     });
     sdk.addRoute({
       path: '/pay/stripe/success',
       name: 'stripe-success',
       component: () => import('./StripeSuccessView.vue'),
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true, noLayout: true }
     });
     sdk.addRoute({
       path: '/pay/stripe/cancel',
       name: 'stripe-cancel',
       component: () => import('./StripeCancelView.vue'),
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true, noLayout: true }
     });
 
     sdk.addTranslations('en', en);
