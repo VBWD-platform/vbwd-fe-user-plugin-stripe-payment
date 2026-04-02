@@ -8,10 +8,10 @@
       <p>{{ $t('stripe.success.verifying') }}</p>
     </div>
     <div
-      v-else-if="timedOut"
-      class="stripe-success__processing"
+      v-else-if="error"
+      class="stripe-success__error"
     >
-      <p>{{ $t('stripe.success.processing') }}</p>
+      <p>{{ error }}</p>
       <router-link
         to="/dashboard/invoices"
         class="btn btn-primary"
@@ -20,32 +20,61 @@
       </router-link>
     </div>
     <div
-      v-else-if="error"
-      class="stripe-success__error"
+      v-else-if="timedOut || confirmed"
+      class="stripe-success__done"
     >
-      <p>{{ error }}</p>
+      <p v-if="redirecting">
+        {{ $t('stripe.success.redirecting') || 'Redirecting...' }}
+      </p>
+      <p v-else>
+        {{ $t('stripe.success.processing') }}
+      </p>
+      <router-link
+        :to="confirmationUrl"
+        class="btn btn-primary"
+      >
+        {{ $t('stripe.success.viewOrder') || 'View Order' }}
+      </router-link>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { usePaymentStatus } from 'vbwd-view-component';
 import { api } from '@/api';
 
 const router = useRouter();
+const redirecting = ref(false);
+
 const { polling, confirmed, timedOut, error, statusData, readSessionFromQuery, startPolling } =
   usePaymentStatus('/plugins/stripe', api);
 
-// When payment confirmed, redirect to checkout confirmation page
+const invoiceId = computed(() => (statusData.value?.invoice_id as string) || '');
+
+const confirmationUrl = computed(() => ({
+  path: '/checkout/confirmation',
+  query: invoiceId.value ? { invoice_id: invoiceId.value } : {},
+}));
+
+// Redirect to confirmation page when payment confirmed OR timed out
+// (timed out usually means webhook already processed — payment succeeded)
+function redirectToConfirmation() {
+  redirecting.value = true;
+  router.replace(confirmationUrl.value);
+}
+
 watch(confirmed, (isConfirmed) => {
   if (isConfirmed) {
-    const invoiceId = (statusData.value?.invoice_id as string) || '';
-    router.replace({
-      path: '/checkout/confirmation',
-      query: invoiceId ? { invoice_id: invoiceId } : {},
-    });
+    redirectToConfirmation();
+  }
+});
+
+watch(timedOut, (isTimedOut) => {
+  if (isTimedOut) {
+    // Auto-redirect after 2 seconds — payment likely succeeded via webhook
+    setTimeout(redirectToConfirmation, 2000);
   }
 });
 
@@ -86,5 +115,9 @@ onMounted(() => {
   border-radius: 4px;
   text-decoration: none;
   margin-top: 15px;
+}
+
+.btn-primary:hover {
+  background: #2980b9;
 }
 </style>
