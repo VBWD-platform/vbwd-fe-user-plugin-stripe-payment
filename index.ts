@@ -1,4 +1,5 @@
 import type { IPlugin, IPlatformSDK } from 'vbwd-view-component';
+import { registerCheckoutPaymentMethod } from '@/registries/checkoutPaymentMethods';
 import en from './locales/en.json';
 import de from './locales/de.json';
 import es from './locales/es.json';
@@ -42,6 +43,11 @@ export const stripePaymentPlugin: IPlugin = {
     sdk.addTranslations('ru', ru);
     sdk.addTranslations('th', th);
     sdk.addTranslations('zh', zh);
+
+    // Agnostic post-checkout dispatch: tell core to hop here after invoice creation.
+    registerCheckoutPaymentMethod('stripe', {
+      redirectPath: (invoiceId) => `/pay/stripe?invoice=${invoiceId}`,
+    });
   },
 
   activate() { this._active = true; },
