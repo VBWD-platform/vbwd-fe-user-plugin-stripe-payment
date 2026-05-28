@@ -11,7 +11,9 @@
       "message": "Su pago ha sido procesado. Su suscripción ahora está activa.",
       "verifying": "Verificando el pago...",
       "processing": "Su pago está siendo procesado. Esto puede tomar un momento.",
-      "viewInvoices": "Ver Facturas"
+      "viewInvoices": "Ver Facturas",
+      "redirecting": "Redirigiendo…",
+      "viewOrder": "Ver pedido"
     },
     "cancel": {
       "title": "Pago Cancelado",

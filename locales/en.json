@@ -11,7 +11,9 @@
       "message": "Your payment has been processed. Your subscription is now active.",
       "verifying": "Verifying payment...",
       "processing": "Your payment is being processed. This may take a moment.",
-      "viewInvoices": "View Invoices"
+      "viewInvoices": "View Invoices",
+      "redirecting": "Redirecting…",
+      "viewOrder": "View order"
     },
     "cancel": {
       "title": "Payment Cancelled",

@@ -11,7 +11,9 @@
       "message": "Ihre Zahlung wurde verarbeitet. Ihr Abonnement ist jetzt aktiv.",
       "verifying": "Zahlung wird überprüft...",
       "processing": "Ihre Zahlung wird verarbeitet. Dies kann einen Moment dauern.",
-      "viewInvoices": "Rechnungen anzeigen"
+      "viewInvoices": "Rechnungen anzeigen",
+      "redirecting": "Weiterleitung…",
+      "viewOrder": "Bestellung anzeigen"
     },
     "cancel": {
       "title": "Zahlung abgebrochen",

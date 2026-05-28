@@ -11,7 +11,9 @@
       "message": "支払いが処理されました。サブスクリプションはアクティブになります。",
       "verifying": "支払い確認中...",
       "processing": "支払いが処理中です。少しお時間をいただく場合があります。",
-      "viewInvoices": "請求書を表示"
+      "viewInvoices": "請求書を表示",
+      "redirecting": "リダイレクト中…",
+      "viewOrder": "注文を見る"
     },
     "cancel": {
       "title": "支払いキャンセル",

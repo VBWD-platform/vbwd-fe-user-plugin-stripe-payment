@@ -11,7 +11,9 @@
       "message": "Votre paiement a été traité. Votre abonnement est maintenant actif.",
       "verifying": "Vérification du paiement...",
       "processing": "Votre paiement est en cours de traitement. Cela peut prendre un moment.",
-      "viewInvoices": "Afficher les Factures"
+      "viewInvoices": "Afficher les Factures",
+      "redirecting": "Redirection…",
+      "viewOrder": "Voir la commande"
     },
     "cancel": {
       "title": "Paiement Annulé",

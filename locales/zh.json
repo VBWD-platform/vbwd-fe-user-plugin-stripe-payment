@@ -11,7 +11,9 @@
       "message": "您的支付已处理。您的订阅现已激活。",
       "verifying": "正在验证支付...",
       "processing": "您的支付正在处理中。这可能需要一些时间。",
-      "viewInvoices": "查看发票"
+      "viewInvoices": "查看发票",
+      "redirecting": "正在跳转…",
+      "viewOrder": "查看订单"
     },
     "cancel": {
       "title": "支付已取消",
