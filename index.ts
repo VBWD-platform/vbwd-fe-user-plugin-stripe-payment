@@ -26,7 +26,7 @@ import zh from './locales/zh.json';
 
 export const stripePaymentPlugin: IPlugin = {
   name: 'stripe-payment',
-  version: '1.0.0',
+  version: '26.6',
   description: 'Stripe payment processing — redirects to Stripe Checkout',
   _active: false,
 
